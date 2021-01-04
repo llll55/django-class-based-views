@@ -5,12 +5,16 @@ from .models import Post
 
 
 class PostList(ListView):
-    model  = Post
+    model = Post     ##  in template [ object_list , post_list  ]
+    ordering = ['created_at']
+    #queryset = Post.objects.filter(active=True)
 
-
+    def get_queryset(self):
+        return Post.objects.filter(active=True)
 
 class PostDetail(DetailView):
-    model = Post
+    pass
+
 
 
 class PostCreate(CreateView):
